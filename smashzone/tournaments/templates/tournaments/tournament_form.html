@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Create or Update Tournament</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.name.errors }}
+    {{ form.name.label_tag }} {{ form.name }}
+    {{ form.description.errors }}
+    {{ form.description.label_tag }} {{ form.description }}
+    {{ form.start_date.errors }}
+    {{ form.start_date.label_tag }} {{ form.start_date }}
+    {{ form.end_date.errors }}
+    {{ form.end_date.label_tag }} {{ form.end_date }}
+    {{ form.location.errors }}
+    {{ form.location.label_tag }} {{ form.location }}
+    
+    <!-- Custom Checkboxes for Sports -->
+    <fieldset>
+        <legend>Sports</legend>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sport</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sport in form.fields.sports.queryset %}
+                <tr>
+                    <td>{{ sport.name }}</td>
+                    <td>
+                        <input type="checkbox" id="id_sports_{{ forloop.counter0 }}" name="sports" value="{{ sport.id }}"
+                            {% if sport in form.instance.sports.all %}checked{% endif %}>
+                        <label for="id_sports_{{ forloop.counter0 }}"></label>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </fieldset>
+
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'tournament-list' %}"><button>Back to List</button></a>
+{% endblock %}

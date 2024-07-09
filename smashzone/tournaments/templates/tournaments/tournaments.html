@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Upcoming Tournaments</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tournament Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Location</th>
+            <th>Sports</th> <!-- New column for displaying selected sports -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for tournament in tournaments %}
+        <tr>
+            <td><a href="{% url 'tournament-detail' tournament.pk %}">{{ tournament.name }}</a></td>
+            <td>{{ tournament.description }}</td>
+            <td>{{ tournament.start_date }}</td>
+            <td>{{ tournament.end_date }}</td>
+            <td>{{ tournament.location }}</td>
+            <td>
+                {% for sport in tournament.sports.all %}
+                    {{ sport.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No tournaments available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'tournament-create' %}">
+    <button>Create New Tournament</button>
+</a>
+{% endblock %}

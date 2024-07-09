@@ -1,0 +1,127 @@
+/* styles.css */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+header {
+    background-color: #4a4a4a; /* Darker gray background for the header */
+    color: #fff;
+    padding: 1rem;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff; /* White background for the content area */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade of blue */
+}
+
+/* Forms */
+form {
+    margin: 1rem 0;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Links */
+a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+table th, table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f0f0f0;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Error and Success Messages */
+.error-message {
+    color: #dc3545; /* Bootstrap danger color */
+    background-color: #f8d7da;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.success-message {
+    color: #155724; /* Bootstrap success color */
+    background-color: #d4edda;
+    padding: 1rem;
+    border-radius: 4px;
+}
