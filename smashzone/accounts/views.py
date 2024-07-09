@@ -1,26 +1,21 @@
+# smashzone/accounts/views.py
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib import messages
 from .forms import CustomUserCreationForm
-
-from rest_framework import generics
-from .models import CustomUser
-from .serializers import UserSerializer
 
 def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('dashboard')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('home')  # Redirect to home page after registration
     else:
         form = CustomUserCreationForm()
-    return render(request, 'accounts/register.html', {'form': form})
-
-class UserList(generics.ListCreateAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
-
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
+    return render(request, 'registration/register.html', {'form': form})
